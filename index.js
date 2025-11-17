@@ -4,7 +4,7 @@ import { demo_play_10_games } from './tests.js';
 
 async function main() {
     // Startup logic, welcome, splash screen
-    console.log("Welcome to Jesse's demonstration app!");
+    console.log("Welcome to kelvin's demonstration app!");
 
     // Main Event Loop / Logic
     // What are the main things our app does?
