@@ -1,27 +1,43 @@
 // API function to integrate with Open-Meteo Geocoding and Weather APIs
 // Reference: https://open-meteo.com/
 
-export async function searchCity(city) {
-  const res = await fetch(
-    `https://geocoding-api.open-meteo.com/v1/search?name=${city}&count=10&language=en&format=json`
-  );
-
+// Fetch a random dog image
+export async function getDogImage() {
+  const res = await fetch("https://dog.ceo/api/breeds/image/random");
   const data = await res.json();
-
-  console.log(data);
-
-  return data.results || [];
+  return data.message; // image URL
 }
 
-export async function fetchWeather(lat, lon) {
-  // Hardcode coordinates or use a simple free API.
-  const res = await fetch(
-    `https://api.open-meteo.com/v1/forecast?latitude=${lat}&longitude=${lon}&current_weather=true`
-  );
-
+// Fetch a random cat fact
+export async function getCatFact() {
+  const res = await fetch("https://catfact.ninja/fact");
   const data = await res.json();
-
-  console.log(data);
-
-  return data.current_weather ?? "N/A";
+  return data.fact; // fact string
 }
+
+// Fetch a random fox image
+export async function getFoxImage() {
+  const res = await fetch("https://randomfox.ca/floof/");
+  const data = await res.json();
+  return data.image; // image URL
+}
+
+/**
+ * {
+    "status": "success",
+    "symbols": [
+        {
+            "symbol": "BNB",
+            "last": "857.95",
+            "last_btc": "0.0098218219946307",
+            "lowest": "856.95",
+            "highest": "858.79",
+            "date": "2025-11-26 00:32:10",
+            "daily_change_percentage": "-0.047765506314363",
+            "source_exchange": "binance"
+        }
+    ]
+}
+ * 
+ * 
+ */
