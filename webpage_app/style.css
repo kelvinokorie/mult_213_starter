@@ -1,36 +1,79 @@
 :root {
-    font-family: system-ui;
+  --bg-color: #f9fafb;
+  --card-bg: #ffffff;
+  --primary-color: #4cafef;
+  --secondary-color: #ff9800;
+  --text-color: #333;
+  --border-radius: 0.75rem;
+  --shadow: 0 4px 8px rgba(0,0,0,0.1);
+  font-family: "Segoe UI", system-ui, sans-serif;
+}
+
+body {
+  background: var(--bg-color);
+  margin: 0;
+  padding: 0;
+  color: var(--text-color);
 }
 
 .container {
-    max-width: 480px;
-    margin: 3rem auto;
-    padding: 1rem;
+  max-width: 600px;
+  margin: 3rem auto;
+  padding: 1rem;
+  text-align: center;
+}
+
+h1 {
+  color: var(--primary-color);
+  margin-bottom: 2rem;
 }
 
 .card {
-    padding: 1rem;
-    background: #f1f1f1;
-    border-radius: .5rem;
-    margin: 1rem 0;
+  padding: 1.5rem;
+  background: var(--card-bg);
+  border-radius: var(--border-radius);
+  margin: 1rem 0;
+  box-shadow: var(--shadow);
+  transition: transform 0.2s ease;
+}
+
+.card:hover {
+  transform: translateY(-3px);
 }
 
 form {
-    display: flex;
-    gap: .5rem;
-    margin-bottom: 1rem;
+  margin-bottom: 1rem;
 }
 
 button {
-    padding: .5rem 1rem;
+  background: var(--primary-color);
+  color: #fff;
+  border: none;
+  border-radius: var(--border-radius);
+  padding: 0.75rem 1.25rem;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+button:hover {
+  background: var(--secondary-color);
 }
 
 fieldset {
-    display: flex;
-    flex-direction: column;
-    gap: .5rem;
-    margin-bottom: 1rem;
-    border: 1px solid #ccc;
-    border-radius: .5rem;
-    padding: 1rem;
+  border: 1px solid #ddd;
+  border-radius: var(--border-radius);
+  padding: 1rem;
+  margin-bottom: 1rem;
+}
+
+legend {
+  font-weight: bold;
+  color: var(--secondary-color);
+}
+
+img {
+  max-width: 100%;
+  border-radius: var(--border-radius);
+  box-shadow: var(--shadow);
 }
