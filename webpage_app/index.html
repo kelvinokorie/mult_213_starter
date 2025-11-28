@@ -1,49 +1,60 @@
 <!doctype html>
 <html lang="en">
+
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Animal Facts Dashboard</title>
-  <link rel="stylesheet" href="style.css" />
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Crypto Dashboard</title>
+
+    <link rel="stylesheet" href="style.css" />
 </head>
+
 <body>
-  <main class="container">
-    <h1>Animal Facts</h1>
+    <main class="container">
+        <h1>Crypto Dashboard</h1>
 
-    <!-- Dog Section -->
-    <form id="dog-form">
-      <fieldset>
-        <legend>Get a Random Dog Image</legend>
-        <button type="submit">Show Dog</button>
-      </fieldset>
-    </form>
-    <section id="dog-output" class="card">
-      <p>Awaiting input…</p>
-    </section>
+        <!-- Search Form -->
+        <form id="crypto-form">
+            <fieldset>
+                <legend>Search Cryptocurrency</legend>
+                <input 
+                    id="crypto-input" 
+                    placeholder="Enter " 
+                    required 
+                />
+                <button type="submit">Search</button>
+            </fieldset>
+        </form>
 
-    <!-- Cat Section -->
-    <form id="cat-form">
-      <fieldset>
-        <legend>Get a Random Cat Fact</legend>
-        <button type="submit">Show Cat Fact</button>
-      </fieldset>
-    </form>
-    <section id="cat-output" class="card">
-      <p>Awaiting input…</p>
-    </section>
+        <!-- Results -->
+        <section id="crypto-results" class="card">
+            <p>Awaiting input…</p>
+        </section>
 
-    <!-- Fox Section -->
-    <form id="fox-form">
-      <fieldset>
-        <legend>Get a Random Fox Image</legend>
-        <button type="submit">Show Fox</button>
-      </fieldset>
-    </form>
-    <section id="fox-output" class="card">
-      <p>Awaiting input…</p>
-    </section>
-  </main>
 
-  <script src="dist/main.js"></script>
+        <!-- Conversion Form -->
+<form id="convert-form">
+    <fieldset>
+        <legend>Convert Crypto</legend>
+
+        <input id="convert-from" placeholder="From " required />
+        <input id="convert-to" placeholder="To " required />
+        <input id="convert-amount" type="number" placeholder="Amount " required />
+
+        <button type="submit">Convert</button>
+    </fieldset>
+</form>
+
+<section id="convert-results" class="card" style="margin-top: 20px;">
+    <p>Awaiting conversion…</p>
+</section>
+
+
+
+    </main>
+
+    <script src="dist/main.js"></script>
 </body>
+
 </html>
