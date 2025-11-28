@@ -1,65 +1,50 @@
 import { renderMessage } from "./dom.js";
-import { searchCity, fetchWeather } from "./api.js";
+import { getDogImage, getCatFact, getFoxImage } from "./api.js";
 
-// Grab references to various parts of the HTML page
-const cityForm = document.querySelector("#city-form");
-const cityList = document.querySelector("#city-list");
-const weatherForm = document.querySelector("#weather-form");
-const weatherOutput = document.querySelector("#weather-output");
+const dogForm = document.querySelector("#dog-form");
+const dogOutput = document.querySelector("#dog-output");
 
-cityForm.addEventListener("submit", async (e) => {
+const catForm = document.querySelector("#cat-form");
+const catOutput = document.querySelector("#cat-output");
+
+const foxForm = document.querySelector("#fox-form");
+const foxOutput = document.querySelector("#fox-output");
+
+// Dog section
+dogForm.addEventListener("submit", async (e) => {
   e.preventDefault();
-
-  const city = document.querySelector("#city").value.trim();
-  if (!city) return;
-
-  renderMessage(cityList, "Loading…");
+  renderMessage(dogOutput, "Loading dog image…");
 
   try {
-    const data = await searchCity(city);
-    if (data.length === 0) {
-        renderMessage(cityList, `No results found for "${city}".`);
-        return;
-    }
-    
-    let message = `Found ${data.length} result(s) for "${city}":`;
-    
-    message += "<ul>";
-    data.forEach((item) => {
-        message += `<li>${item.name}, ${item.country} (Lat: ${item.latitude}, Lon: ${item.longitude})</li>`;
-    });
-    message += "</ul>";
-    
-    renderMessage(cityList, message);
+    const imageUrl = await getDogImage();
+    renderMessage(dogOutput, `<img src="${imageUrl}" alt="Random Dog" style="max-width:100%"/>`);
   } catch (err) {
-    renderMessage(cityList, `Error: ${err.message}`);
+    renderMessage(dogOutput, `Error: ${err.message}`);
   }
 });
 
-weatherForm.addEventListener("submit", async (e) => {
-    e.preventDefault();
+// Cat section
+catForm.addEventListener("submit", async (e) => {
+  e.preventDefault();
+  renderMessage(catOutput, "Loading cat fact…");
 
-    const latStr = document.querySelector("#lat").value.trim();
-    const lonStr = document.querySelector("#lon").value.trim();
+  try {
+    const fact = await getCatFact();
+    renderMessage(catOutput, `<p>${fact}</p>`);
+  } catch (err) {
+    renderMessage(catOutput, `Error: ${err.message}`);
+  }
+});
 
-    if (!latStr || !lonStr) {
-        renderMessage(weatherOutput, "Please provide both latitude and longitude.");
-        return;
-    }
+// Fox section
+foxForm.addEventListener("submit", async (e) => {
+  e.preventDefault();
+  renderMessage(foxOutput, "Loading fox image…");
 
-    const lat = parseFloat(latStr);
-    const lon = parseFloat(lonStr);
-    if (Number.isNaN(lat) || Number.isNaN(lon)) {
-        renderMessage(weatherOutput, "Latitude and longitude must be valid numbers.");
-        return;
-    }
-
-    renderMessage(weatherOutput, "Loading Weather Data…");
-
-    try {
-        const weather = await fetchWeather(lat, lon);
-        renderMessage(weatherOutput, `<pre>${JSON.stringify(weather, null, 2)}</pre>`);
-    } catch (err) {
-        renderMessage(weatherOutput, `Error: ${err.message}`);
-    }
+  try {
+    const imageUrl = await getFoxImage();
+    renderMessage(foxOutput, `<img src="${imageUrl}" alt="Random Fox" style="max-width:100%"/>`);
+  } catch (err) {
+    renderMessage(foxOutput, `Error: ${err.message}`);
+  }
 });
