@@ -1,50 +1,108 @@
 import { renderMessage } from "./dom.js";
-import { getDogImage, getCatFact, getFoxImage } from "./api.js";
+import { getCryptoData, getCryptoList, getConversion} from "./api.js";
 
-const dogForm = document.querySelector("#dog-form");
-const dogOutput = document.querySelector("#dog-output");
+// Form + Output Elements
+const searchForm = document.querySelector("#crypto-form");
+const searchInput = document.querySelector("#crypto-input");
+const resultsSection = document.querySelector("#crypto-results");
 
-const catForm = document.querySelector("#cat-form");
-const catOutput = document.querySelector("#cat-output");
-
-const foxForm = document.querySelector("#fox-form");
-const foxOutput = document.querySelector("#fox-output");
-
-// Dog section
-dogForm.addEventListener("submit", async (e) => {
-  e.preventDefault();
-  renderMessage(dogOutput, "Loading dog image…");
-
+// Load crypto list on page load (BONUS)
+document.addEventListener("DOMContentLoaded", async () => {
   try {
-    const imageUrl = await getDogImage();
-    renderMessage(dogOutput, `<img src="${imageUrl}" alt="Random Dog" style="max-width:100%"/>`);
+    const list = await getCryptoList();
+    renderMessage(
+      resultsSection,
+      `<p>Loaded ${list.length} cryptocurrencies. You can search any symbol above.</p>`
+    );
   } catch (err) {
-    renderMessage(dogOutput, `Error: ${err.message}`);
+    renderMessage(resultsSection, `Error loading crypto list: ${err.message}`);
   }
 });
 
-// Cat section
-catForm.addEventListener("submit", async (e) => {
+// MAIN SEARCH FUNCTIONALITY
+searchForm.addEventListener("submit", async (e) => {
   e.preventDefault();
-  renderMessage(catOutput, "Loading cat fact…");
+
+  const symbol = searchInput.value.trim().toUpperCase();
+  if (!symbol) return;
+
+  renderMessage(resultsSection, "Loading…");
 
   try {
-    const fact = await getCatFact();
-    renderMessage(catOutput, `<p>${fact}</p>`);
+    const data = await getCryptoData(symbol);
+
+    if (!data || data.length === 0) {
+      renderMessage(resultsSection, `<p>No results found for "${symbol}".</p>`);
+      return;
+    }
+const History= await getConversion(symbol);
+
+    let html = `<h3>Results for "${symbol}"</h3><ul>`;
+
+    data.forEach((item) => {
+      html += `
+        <li class="crypto-item">
+          <strong>${item.symbol}</strong> — ${item.source_exchange}<br>
+          Lowest: <span>${item.lowest}</span> | 
+          Highest: <span>${item.highest}</span>
+        </li>
+      `;
+    });
+
+// Conversion Elements
+const convertForm = document.querySelector("#convert-form");
+const convertFrom = document.querySelector("#convert-from");
+const convertTo = document.querySelector("#convert-to");
+const convertAmount = document.querySelector("#convert-amount");
+const convertResults = document.querySelector("#convert-results");
+
+// Conversion Handler
+convertForm.addEventListener("submit", async (e) => {
+  e.preventDefault();
+
+  const from = convertFrom.value.trim().toUpperCase();
+  const to = convertTo.value.trim().toUpperCase();
+  const amount = convertAmount.value.trim();
+
+  if (!from || !to || !amount) return;
+
+  renderMessage(convertResults, "Converting…");
+
+  try {
+    const data = await getConversion(from, to, amount);
+
+    if (!data || !data.result) {
+      renderMessage(convertResults, "<p>Conversion failed.</p>");
+      return;
+    }
+    console.log("kelvin");
+console.log(data);
+let convertednumber = data.result / amount;
+let now = Date().toLocaleString();
+
+    const html = `
+      <h3>Conversion Result</h3>
+      <div class="conversion-box">
+        <p><strong>${amount} ${from}</strong> = <strong>${data.result} ${to}</strong></p>
+        <p>Rate: 1 ${from} = ${convertednumber} ${to}</p>
+        <p>Timestamp: ${now}</p>
+      </div> 
+    `;
+
+    renderMessage(convertResults, html);
   } catch (err) {
-    renderMessage(catOutput, `Error: ${err.message}`);
+    renderMessage(convertResults, `Error: ${err.message}`);
   }
 });
 
-// Fox section
-foxForm.addEventListener("submit", async (e) => {
-  e.preventDefault();
-  renderMessage(foxOutput, "Loading fox image…");
 
-  try {
-    const imageUrl = await getFoxImage();
-    renderMessage(foxOutput, `<img src="${imageUrl}" alt="Random Fox" style="max-width:100%"/>`);
+
+
+
+    html += "</ul>";
+
+    renderMessage(resultsSection, html);
   } catch (err) {
-    renderMessage(foxOutput, `Error: ${err.message}`);
+    renderMessage(resultsSection, `Error: ${err.message}`);
   }
 });
