@@ -1,26 +1,49 @@
 // API function to integrate with Open-Meteo Geocoding and Weather APIs
 // Reference: https://open-meteo.com/
 
-// Fetch a random dog image
-export async function getDogImage() {
-  const res = await fetch("https://dog.ceo/api/breeds/image/random");
+export async function getCryptoList() {
+  const res = await fetch("https://api.freecryptoapi.com/v1/getCryptoList", {
+    headers: {
+      accept: "application/json",
+      Authorization: "Bearer 561064adyru7pdv5718u"
+    }
+  });
   const data = await res.json();
-  return data.message; // image URL
+  return data.data || [];
 }
 
-// Fetch a random cat fact
-export async function getCatFact() {
-  const res = await fetch("https://catfact.ninja/fact");
+export async function getCryptoData(symbol) {
+  const res = await fetch(`https://api.freecryptoapi.com/v1/getData?symbol=${symbol}`, {
+    headers: {
+      "Authorization": "Bearer 561064adyru7pdv5718u"
+    }
+  });
   const data = await res.json();
-  return data.fact; // fact string
+  return data.symbols || null;
 }
 
-// Fetch a random fox image
-export async function getFoxImage() {
-  const res = await fetch("https://randomfox.ca/floof/");
+
+export async function getConversion(from, to, amount) {
+  const res = await fetch(
+    `https://api.freecryptoapi.com/v1/getConversion?from=${from}&to=${to}&amount=${amount}`,
+    {
+      headers: {
+        Authorization: "Bearer 561064adyru7pdv5718u"
+      }
+    }
+  );
+
   const data = await res.json();
-  return data.image; // image URL
+  return data; // full response
 }
+
+
+
+
+
+
+
+
 
 /**
  * {
