@@ -1,53 +1,49 @@
 <!doctype html>
 <html lang="en">
-
 <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-
-    <title>Weather Dashboard</title>
-
-    <link rel="stylesheet" href="style.css" />
-
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Animal Facts Dashboard</title>
+  <link rel="stylesheet" href="style.css" />
 </head>
-
 <body>
-    <main class="container">
-        <h1>Dashboard</h1>
+  <main class="container">
+    <h1>Animal Facts</h1>
 
-        <form id="city-form">
-            <fieldset>
-                <legend>Search by City Name</legend>
-                <input id="city" placeholder="Enter a city" required />
-                <button>Search City</button>
-            </fieldset>
-        </form>
+    <!-- Dog Section -->
+    <form id="dog-form">
+      <fieldset>
+        <legend>Get a Random Dog Image</legend>
+        <button type="submit">Show Dog</button>
+      </fieldset>
+    </form>
+    <section id="dog-output" class="card">
+      <p>Awaiting input…</p>
+    </section>
 
-        <section id="city-list" class="card">
-            <p>Awaiting input…</p>
-        </section>
+    <!-- Cat Section -->
+    <form id="cat-form">
+      <fieldset>
+        <legend>Get a Random Cat Fact</legend>
+        <button type="submit">Show Cat Fact</button>
+      </fieldset>
+    </form>
+    <section id="cat-output" class="card">
+      <p>Awaiting input…</p>
+    </section>
 
-        <form id="weather-form">
-            <fieldset>
-                <legend>Search by Coordinates</legend>
+    <!-- Fox Section -->
+    <form id="fox-form">
+      <fieldset>
+        <legend>Get a Random Fox Image</legend>
+        <button type="submit">Show Fox</button>
+      </fieldset>
+    </form>
+    <section id="fox-output" class="card">
+      <p>Awaiting input…</p>
+    </section>
+  </main>
 
-                <label for="lat">Latitude</label>
-                <input id="lat" name="lat" type="number" step="any" min="-90" max="90" placeholder="e.g. 34.05" required />
-
-                <label for="lon">Longitude</label>
-                <input id="lon" name="lon" type="number" step="any" min="-180" max="180" placeholder="e.g. -118.24" required />
-
-                <button type="submit">Search Weather</button>
-            </fieldset>
-        </form>
-
-        <section id="weather-output" class="card">
-            <p>Awaiting input…</p>
-        </section>
-    </main>
-
-    <!-- Your bundled JS file -->
-    <script src="dist/main.js"></script>
+  <script src="dist/main.js"></script>
 </body>
-
 </html>
