@@ -1,3 +1,3 @@
-export function renderMessage(el, text) {
-  el.innerHTML = `<p>${text}</p>`;
+export function renderMessage(container, message) {
+  container.innerHTML = message;
 }
