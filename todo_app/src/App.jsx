@@ -56,7 +56,6 @@ function App() {
                   title={todo.text}
                   subtitle="New Task"
                   content="This task was just added."
-                  image="https://via.placeholder.com/400x200"
                   backgroundColor={todo.color}
                   onDelete={() => handleDelete(todo.id)}
                 />
