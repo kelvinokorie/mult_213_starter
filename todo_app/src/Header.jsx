@@ -1,12 +1,10 @@
 import './Header.css';
 
-// Add a new component for the Header
 export function Header(props) {
-    // props is some JSON that looks like {title: str, message: str}
-    return (<>
-        <header>
-            <h1>{props.title}</h1>
-            <p>{props.message}</p>
-        </header>
-    </>);
+  return (
+    <header className="header">
+      <h1 className="header__title">{props.title}</h1>
+      <p className="header__message">{props.message}</p>
+    </header>
+  );
 }
