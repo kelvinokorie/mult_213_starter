@@ -1,3 +1,17 @@
-header {
-    background-color: rgb(51, 189, 39);
+.header {
+  background-color: rgb(51, 189, 39);
+  padding: 2rem 1rem;
+  text-align: center;
+  color: black;
+}
+
+.header__title {
+  font-size: 2rem;
+  margin: 0;
+  font-weight: bold;
+}
+
+.header__message {
+  font-size: 1rem;
+  margin-top: 0.5rem;
 }
