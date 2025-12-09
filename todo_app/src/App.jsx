@@ -1,100 +1,74 @@
 import './App.css';
-import { useState } from 'react';
-import viteLogo from '/vite.svg';
 import { Header } from './Header';
-import reactLogo from './assets/react.svg';
+import { Card } from './card';
+import { Footer } from './footer';
+import { useState } from 'react';
 
 function App() {
-  // Define the TODO models
   const [todos, setTodos] = useState([]);
+  const [inputValue, setInputValue] = useState('');
 
-  // todos is going to be an empty list []
-  // If I want to change todos, I need to use the setTodos() callback function
+  const handleAdd = () => {
+    if (inputValue.trim() === '') return;
 
-  // Build up the UI element for the TODOs
-  let listContent = <></>;
+    const colors = ['#2c2c2c', '#e16aab', '#ec4c2c', '#d0d00d', '#006699', '#663399', '#990000', '#006600'];
+    const randomColor = colors[Math.floor(Math.random() * colors.length)];
 
-  if (todos.length == 0) {
-    // If there are no TODOs, tell the user what to do
-    listContent = <li key="empty" className="todo-list__empty">No tasks yet. Add your first TODO above.</li>;
-  } else {
-    // If there are TODOs, render them as li elements
-    listContent = todos.map((item, i) => {
-      return <li key={"todo-" + i} className="todo-item">
-        <input type="checkbox" className="todo-item__checkbox" data-id={i} id={"todo-" + i} />
-        <label htmlFor={"todo-" + i} className="todo-item__label">{item.name}</label>
-      </li>
-    })
-  }
-
-  // Set up add new TODO form handler
-  const handleFormSubmit = (formData) => {
-    const titleField = formData.get('title');
-    console.log(`Handling new TODO: ${titleField}`);
-
-    // Make new TODO model
     const newTodo = {
-      name: titleField
+      id: Date.now(),
+      text: inputValue,
+      color: randomColor
     };
 
-    // We need to make a new list, otherwise React will not update
+    setTodos([...todos, newTodo]);
+    setInputValue('');
+  };
 
-    // Option 1: Make a new list, iterate over old values, push on new value
-    // const newTodos = [];
-    // for (let i = 0; i < todos.length; i++) {
-    //   newTodos.push(todos[i]);
-    // }
-    // newTodos.push(newTodo);
-
-    // Option 2: Use a splat / explode operator to make a new list with the new value
-    const newTodos = [...todos, newTodo];
-
-    // We call the React hook to update the application state
-    setTodos(newTodos);
+  const handleDelete = (id) => {
+    const updatedTodos = todos.filter(todo => todo.id !== id);
+    setTodos(updatedTodos);
   };
 
   return (
     <>
-      <Header title="Welcome to kelvin app!" message="Thanks for visiting my site." />
+      <Header title="TO-DO LIST APP!" message="Thanks for visiting my site." />
 
       <main>
-        <section>
-          <form id="todo-form" action={handleFormSubmit}>
-            <input
-              className="todo-form__input"
-              id="todo-input"
-              name="title"
-              type="text"
-              placeholder="Add a new task…"
-              autoComplete="off"
-              required
-            />
-            <button className="todo-form__button" type="submit">Add</button>
-          </form>
-        </section>
+        <div className="todo-wrapper">
+          <section className="todo-section">
+            <h2 className="todo-title">TO-DO LIST</h2>
 
-        <section>
-          <h2>My TODOs:</h2>
-          <ul className="todo-list" id="todo-list">
-            {listContent}
-          </ul>
-        </section>
+            <div className="todo-form">
+              <input
+                type="text"
+                placeholder="Enter a task..."
+                className="todo-input"
+                value={inputValue}
+                onChange={(e) => setInputValue(e.target.value)}
+              />
+              <button className="todo-add-button" onClick={handleAdd}>Add</button>
+            </div>
+
+            <div className="card-list">
+              {todos.map((todo) => (
+                <Card
+                  key={todo.id}
+                  title={todo.text}
+                  subtitle="New Task"
+                  content="This task was just added."
+                  image="https://via.placeholder.com/400x200"
+                  backgroundColor={todo.color}
+                  onDelete={() => handleDelete(todo.id)}
+                />
+              ))}
+            </div>
+          </section>
+        </div>
       </main>
 
-      <footer>
-        <p className="read-the-docs">
-          Click on the Vite (the build tool) and React (the frontend framework) logos to learn more
-        </p>
-
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </footer>
+      <Footer message="Contact me at contact@mywebsite.com" />
     </>
-  )
+  );
 }
 
-export default App
+export default App;

@@ -83,3 +83,18 @@ body {
   text-decoration: line-through;
   color: #999;
 }
+
+.app-layout {
+  display: flex;
+  gap: 2rem;
+}
+main {
+  flex: 1;
+}
+.todo-wrapper {
+  width: 100%;
+  background-color: #af6464;
+  padding: 2rem 0;
+  display: flex;
+  justify-content: center;
+}
