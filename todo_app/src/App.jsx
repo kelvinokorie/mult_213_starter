@@ -31,7 +31,7 @@ function App() {
 
   return (
     <>
-      <Header title="TO-DO LIST APP!" message="Thanks for visiting my site." />
+      <Header title="TO-DO LIST APP!" message="Thanks for visiting my app." />
 
       <main>
         <div className="todo-wrapper">
