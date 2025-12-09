@@ -1,0 +1,12 @@
+footer {
+  background-color: rgb(234, 97, 102);
+  padding: 1rem;
+  text-align: center;
+  font-size: 0.9rem;
+  color: #070707;
+}
+
+.footer__default {
+  margin-top: 0.5rem;
+  color: #070707;
+}
