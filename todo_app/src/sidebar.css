@@ -1,0 +1,38 @@
+.sidebar {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  padding: 1rem;
+  background-color: #f1efef;
+  max-width: 200px;
+}
+
+.sidebar__button {
+  padding: 0.75rem;
+  font-size: 0.9rem;
+  border: none;
+  color: rgb(249, 247, 247);
+  cursor: pointer;
+  border-radius: 4px;
+  text-align: left;
+}
+
+.sidebar__todo {
+  background-color: red;
+}
+
+.sidebar__all {
+  background-color: green;
+}
+
+.sidebar__schedule {
+  background-color: olive;
+}
+
+.sidebar__settings {
+  background-color: maroon;
+}
+
+.sidebar__share {
+  background-color: black;
+}
