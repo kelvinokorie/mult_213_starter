@@ -1,0 +1,61 @@
+.card {
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  overflow: hidden;
+  max-width: 400px;
+  margin: 1rem auto;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+}
+
+.card__image {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+.card__content {
+  padding: 1rem;
+}
+
+.card__content h2 {
+  margin: 0;
+  font-size: 1.25rem;
+}
+
+.card__content h3 {
+  margin: 0.5rem 0;
+  font-size: 1rem;
+  color: #dbd8d8;
+}
+
+.card__content p {
+  font-size: 0.95rem;
+  color: #f3ecec;
+}
+
+.card {
+  border-radius: 8px;
+  overflow: hidden;
+  margin: 1rem 0;
+  color: white;
+  box-shadow: 0 2px 6px rgba(228, 163, 163, 0.2);
+}
+
+.card__image {
+  width: 100%;
+  height: auto;
+}
+
+.card__content {
+  padding: 1rem;
+}
+
+.card__delete {
+  background-color: red;
+  color: white;
+  border: none;
+  padding: 0.4rem 0.8rem;
+  border-radius: 4px;
+  cursor: pointer;
+  margin-top: 0.5rem;
+}
