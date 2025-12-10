@@ -1,4 +1,4 @@
-// API function to integrate with Open-Meteo Geocoding and Weather APIs
+// API functions to integrate with Open-Meteo Geocoding and Weather APIs
 // Reference: https://open-meteo.com/
 
 export async function getCryptoList() {
@@ -33,6 +33,7 @@ export async function getConversion(from, to, amount) {
     }
   );
 
+  // Get the JSON from the HTTP request response
   const data = await res.json();
   return data; // full response
 }
